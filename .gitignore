@@ -4,6 +4,17 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Runtime/generated files
+*.log
+logs/
+run.log
+backend*.log
+uploads/
+face-engine/face-engine.log
+face-engine/__pycache__/
+face-engine/.venv/
+*.pyc
+
 ### STS ###
 .apt_generated
 .classpath

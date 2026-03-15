@@ -29,22 +29,21 @@ public class AdminBootstrapConfig {
             }
 
             User user = userRepository.findByEmail(email).orElse(null);
-            if (user == null) {
-                User admin = new User();
-                admin.setEmail(email);
-                admin.setPassword(passwordEncoder.encode(password));
-                admin.setRole(UserService.ROLE_ADMIN);
-                admin.setActive(true);
-                userRepository.save(admin);
-                log.info("Bootstrap admin user created: {}", email);
+            if (user != null) {
+                user.setRole(UserService.ROLE_ADMIN);
+                user.setActive(true);
+                userRepository.save(user);
+                log.info("Bootstrap admin user already exists: {}", email);
                 return;
             }
 
-            user.setRole(UserService.ROLE_ADMIN);
-            user.setActive(true);
-            user.setPassword(passwordEncoder.encode(password));
-            userRepository.save(user);
-            log.info("Bootstrap admin user updated: {}", email);
+            User admin = new User();
+            admin.setEmail(email);
+            admin.setPassword(passwordEncoder.encode(password));
+            admin.setRole(UserService.ROLE_ADMIN);
+            admin.setActive(true);
+            userRepository.save(admin);
+            log.info("Bootstrap admin user created: {}", email);
         };
     }
 }
