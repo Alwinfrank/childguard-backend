@@ -1,0 +1,9 @@
+.git
+target
+uploads
+*.log
+run.log
+backend*.log
+face-engine
+.vscode
+.idea
